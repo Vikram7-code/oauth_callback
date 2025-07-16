@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Chrome Extension Auth Callback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+        }
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h2 { margin-top: 0; }
+        p { opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🎉 Authentication Successful!</h2>
+        <div class="spinner"></div>
+        <p>Completing login process...</p>
+        <p><small>This page will close automatically.</small></p>
+    </div>
+    
+    <script>
+        // Log for debugging
+        console.log('Callback URL:', window.location.href);
+        console.log('Hash fragment:', window.location.hash);
+        console.log('Search params:', window.location.search);
+        
+        // Auto-close after 3 seconds
+        setTimeout(() => {
+            try {
+                window.close();
+            } catch (e) {
+                console.log('Cannot close window automatically');
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
